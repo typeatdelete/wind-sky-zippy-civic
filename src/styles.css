@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #100e0b;
+  --color-surface: #1c1814;
+  --color-field: #16130f;
+  --color-field-loud: #2a2218;
+  --color-field-quiet: #0c0b09;
+  --color-fg: #f3eadc;
+  --color-muted: #9c9080;
+  --color-faint: #8a7e70;
+  --color-primary: #e39b3e;
+  --color-border: #342e26;
+  --font-display: "Fraunces", "Iowan Old Style", Palatino, Georgia, serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color-scheme: dark;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  [role="radio"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+.pitch-label {
+  left: calc(var(--t) * 100%);
+  transform: translateX(-50%);
+}
+
+.pitch-label[data-edge="start"] {
+  transform: none;
+}
+
+.pitch-label[data-edge="end"] {
+  transform: translateX(-100%);
+}
+
+.reverb-slider {
+  appearance: none;
+  height: 2.75rem;
+  width: 100%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.reverb-slider:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.reverb-slider::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+.reverb-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: -0.55rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  border: 2px solid var(--color-bg);
+}
+
+.reverb-slider::-moz-range-track {
+  height: 2px;
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+.reverb-slider::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  border: 2px solid var(--color-bg);
+}
+
+@keyframes aether-hint {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.hint-pulse {
+  animation: aether-hint 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint-pulse {
+    animation: none;
+  }
+}
